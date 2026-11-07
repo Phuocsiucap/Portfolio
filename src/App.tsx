@@ -1,168 +1,38 @@
 import {
-  ArrowDown,
   ArrowUpRight,
   Award,
   BriefcaseBusiness,
   Check,
-  Code2,
   Copy,
-  Cpu,
-  Database,
-  ExternalLink,
-  GitBranch,
   Github,
   GraduationCap,
-  Layers,
   Linkedin,
-  Lock,
   Mail,
   MapPin,
   Menu,
-  Moon,
-   Network,
-  Server,
-  ShieldCheck,
-  Sparkles,
-  Sun,
-  Terminal,
-  Workflow,
   X,
-  Zap,
 } from 'lucide-react'
 import { useState } from 'react'
 
 const GITHUB = 'https://github.com/Phuocsiucap'
 const EMAIL = 'Nguyenvanphuoc09112004@gmail.com'
 
-const engineeringPillars = [
-  {
-    icon: Server,
-    code: 'SYS_01',
-    title: 'API Engineering & Microservices',
-    desc: 'Designing clean RESTful contracts, API Gateways, and modular services with FastAPI and NestJS, complete with RBAC, validation, and OpenAPI/Swagger documentation.',
-  },
-  {
-    icon: Workflow,
-    code: 'SYS_02',
-    title: 'Event-Driven & Async Pipelines',
-    desc: 'Decoupling heavy media rendering, crawling, and multi-platform publishing workloads using Apache Kafka message queues and asynchronous worker pools.',
-  },
-  {
-    icon: Database,
-    code: 'SYS_03',
-    title: 'Data Integrity & Concurrency Control',
-    desc: 'Structuring normalized PostgreSQL schemas (Prisma/TypeORM), Redis TTL distributed locks for zero double-booking, and pgvector semantic indexing.',
-  },
-  {
-    icon: Cpu,
-    code: 'SYS_04',
-    title: 'AI Orchestration & Containerization',
-    desc: 'Integrating LLM scripting, TTS, OCR, and Remotion video rendering into reproducible Docker & Docker Compose environments.',
-  },
-]
-
 const skills = [
   {
-    title: 'Languages & Core',
-    subtitle: 'Type-safe & backend scripting',
-    items: [
-      { name: 'Python', level: 'Primary' },
-      { name: 'TypeScript', level: 'Primary' },
-      { name: 'JavaScript (ES6+)', level: 'Core' },
-      { name: 'SQL', level: 'Core' },
-      { name: 'Java', level: 'Working' },
-    ],
+    title: 'Languages',
+    items: ['Python', 'TypeScript', 'JavaScript', 'SQL', 'Java'],
   },
   {
-    title: 'Backend Frameworks',
-    subtitle: 'Service & API development',
-    items: [
-      { name: 'FastAPI', level: 'Primary' },
-      { name: 'NestJS', level: 'Primary' },
-      { name: 'Node.js / Express', level: 'Core' },
-      { name: 'Django', level: 'Working' },
-      { name: 'RESTful APIs', level: 'Primary' },
-      { name: 'Swagger / OpenAPI', level: 'Core' },
-    ],
+    title: 'Backend & APIs',
+    items: ['FastAPI', 'NestJS', 'Node.js', 'Express', 'Django', 'RESTful APIs', 'Swagger / OpenAPI'],
   },
   {
     title: 'Databases & Caching',
-    subtitle: 'Relational, vector & in-memory',
-    items: [
-      { name: 'PostgreSQL', level: 'Primary' },
-      { name: 'pgvector', level: 'Core' },
-      { name: 'Redis (TTL / PubSub)', level: 'Primary' },
-      { name: 'MongoDB', level: 'Core' },
-      { name: 'MySQL', level: 'Working' },
-      { name: 'Prisma / TypeORM', level: 'Primary' },
-    ],
+    items: ['PostgreSQL', 'pgvector', 'Redis', 'MongoDB', 'MySQL', 'Prisma ORM', 'TypeORM'],
   },
   {
-    title: 'Distributed & DevOps',
-    subtitle: 'Messaging, real-time & infra',
-    items: [
-      { name: 'Microservices', level: 'Core' },
-      { name: 'Apache Kafka', level: 'Core' },
-      { name: 'Socket.IO / WebSockets', level: 'Core' },
-      { name: 'Docker & Compose', level: 'Primary' },
-      { name: 'OAuth2 / RBAC / JWT', level: 'Core' },
-      { name: 'Git / Linux CLI', level: 'Primary' },
-    ],
-  },
-]
-
-const projects = [
-  {
-    number: '01',
-    code: 'ARCH-AI-PIPELINE',
-    type: 'GRADUATION THESIS · JUL 2026 — PRESENT',
-    status: '9.1 / 10 Defense Score',
-    title: 'AI-Powered Social Content Platform',
-    summary:
-      'An event-driven backend platform automating the end-to-end social content lifecycle — from multi-source crawling and vector deduplication to AI video synthesis and scheduled OAuth2 publishing.',
-    role: 'Solo Full-Stack & System Architect',
-    stack: ['FastAPI', 'Apache Kafka', 'PostgreSQL + pgvector', 'MongoDB', 'Docker', 'OpenAI API', 'Remotion'],
-    metrics: [
-      { label: 'Architecture', value: 'Event-Driven Kafka' },
-      { label: 'Vector Search', value: 'pgvector Cosine' },
-      { label: 'Integrations', value: 'TikTok / YT OAuth2' },
-    ],
-    highlights: [
-      'Designed event-driven microservices with Apache Kafka to decouple heavy media rendering and asynchronous publishing workloads.',
-      'Built data crawling and semantic-processing pipelines using PostgreSQL pgvector for content deduplication, normalization, and topic clustering.',
-      'Orchestrated automated video generation combining LLM scripting, TTS synthesis, subtitle/OCR extraction, and server-side rendering via Remotion.',
-      'Integrated TikTok, YouTube, and TikTok Shop APIs using OAuth2 token lifecycle management for reliable scheduled multi-channel distribution.',
-    ],
-    link: `${GITHUB}/DATN`,
-    linkLabel: 'Inspect Source Repository',
-    icon: Workflow,
-    visual: 'ai' as const,
-  },
-  {
-    number: '02',
-    code: 'ARCH-TICKET-ACID',
-    type: 'DISTRIBUTED SYSTEMS PROJECT · NOV 2025 — JAN 2026',
-    status: 'Zero Race-Condition Design',
-    title: 'High-Concurrency Movie Ticket Booking Platform',
-    summary:
-      'A microservices-based cinema reservation engine engineered for concurrent seat booking, distributed lock management, real-time state synchronization, payment rollback, and QR ticketing.',
-    role: 'Solo Backend & Full-Stack Developer',
-    stack: ['FastAPI', 'Node.js / Express', 'PostgreSQL', 'Redis TTL Lock', 'Socket.IO', 'Docker', 'API Gateway'],
-    metrics: [
-      { label: 'Concurrency', value: 'Redis Distributed Lock' },
-      { label: 'Consistency', value: 'PostgreSQL ACID' },
-      { label: 'Real-time Sync', value: 'Socket.IO Broadcast' },
-    ],
-    highlights: [
-      'Decomposed backend domain into Auth, User, Cinema Catalog, and Reservation microservices behind a unified API Gateway.',
-      'Implemented Redis TTL-based seat locking and PostgreSQL transactional rollbacks to eliminate double-bookings under concurrent load.',
-      'Engineered real-time seat state broadcasting via Socket.IO to synchronize live availability across connected clients instantly.',
-      'Built cryptographic QR-code ticket generation, verification endpoints, and Cloudinary media delivery pipelines.',
-    ],
-    link: `${GITHUB}/cinema`,
-    linkLabel: 'Inspect Source Repository',
-    icon: Database,
-    visual: 'cinema' as const,
+    title: 'Systems & Tools',
+    items: ['Microservices', 'Apache Kafka', 'Socket.IO / WebSockets', 'Docker', 'Docker Compose', 'Git', 'OAuth2 / RBAC'],
   },
 ]
 
@@ -170,60 +40,98 @@ const experiences = [
   {
     company: '3NestInvest',
     location: 'Hanoi, Vietnam',
-    period: 'JAN 2026 — OCT 2026',
-    duration: '10 mos',
+    period: 'Jan 2026 — Oct 2026',
     role: 'Software Developer',
-    type: 'Full-time / Core Engineering',
     stack: ['PostgreSQL', 'Prisma ORM', 'TypeScript', 'React', 'Vite', 'Tailwind CSS'],
     bullets: [
-      'Engineered internal data collection and automated processing pipelines, significantly reducing manual operational overhead.',
-      'Architected relational PostgreSQL schemas and tuned complex analytical queries with Prisma ORM to boost throughput and reliability.',
-      'Built responsive management dashboards and internal interfaces for the MICE platform using React, TypeScript, Vite, and Tailwind CSS.',
+      'Built internal tools for data collection and processing, reducing manual workload for operational teams.',
+      'Structured PostgreSQL schemas and optimized queries with Prisma ORM to improve data processing efficiency.',
+      'Developed responsive interfaces and internal dashboards for the MICE platform using React, TypeScript, Vite, and Tailwind CSS.',
     ],
   },
   {
     company: '3NestInvest',
     location: 'Hanoi, Vietnam',
-    period: 'JAN 2026 — MAY 2026',
-    duration: '5 mos',
+    period: 'Jan 2026 — May 2026',
     role: 'Backend Developer Intern',
-    type: 'Backend & Financial Systems',
-    stack: ['FastAPI', 'NestJS', 'PostgreSQL', 'TypeORM', 'RBAC', 'Swagger / OpenAPI'],
+    stack: ['FastAPI', 'NestJS', 'PostgreSQL', 'TypeORM', 'RBAC', 'Swagger'],
     bullets: [
-      'Developed production RESTful APIs using FastAPI and NestJS for internal financial suites: Pricebook, SaleForecast, and PricingCalculator.',
-      'Implemented multi-year TCO (Total Cost of Ownership) and margin calculation engines, point-in-time data snapshots, and immutable contract audit logs.',
-      'Designed normalized PostgreSQL schemas with TypeORM and enforced role-based access control (RBAC) alongside comprehensive Swagger documentation.',
+      'Built RESTful APIs with FastAPI and NestJS for internal financial tools: Pricebook, SaleForecast, and PricingCalculator.',
+      'Implemented multi-year TCO and margin calculations, data snapshots, and contract audit logging.',
+      'Designed PostgreSQL schemas with TypeORM, implemented role-based access control (RBAC), and maintained Swagger documentation.',
     ],
+  },
+]
+
+const projects = [
+  {
+    number: '01',
+    period: 'Graduation Thesis · Jul 2026 — Present',
+    badge: 'Thesis Defense: 9.1 / 10',
+    title: 'AI-Powered Social Content Platform',
+    summary:
+      'A full-stack platform that automates the social content lifecycle — from crawling and semantic deduplication to AI script generation, video rendering, and scheduled multi-channel publishing.',
+    role: 'Solo Full-Stack Developer',
+    stack: ['FastAPI', 'Apache Kafka', 'PostgreSQL + pgvector', 'MongoDB', 'Docker', 'OpenAI API', 'Remotion'],
+    highlights: [
+      'Designed event-driven services with Apache Kafka to decouple heavy video rendering and asynchronous publishing tasks.',
+      'Built crawling and semantic-processing pipelines with PostgreSQL pgvector for content deduplication, normalization, and topic clustering.',
+      'Orchestrated AI video generation combining LLM scripting, TTS, subtitle/OCR extraction, and server-side rendering via Remotion.',
+      'Integrated TikTok, YouTube, and TikTok Shop APIs using OAuth2 for scheduled multi-channel distribution.',
+    ],
+    link: `${GITHUB}/DATN`,
+    visual: 'ai' as const,
+  },
+  {
+    number: '02',
+    period: 'Personal Project · Nov 2025 — Jan 2026',
+    badge: 'Microservices & Concurrency',
+    title: 'Movie Ticket Booking Platform',
+    summary:
+      'A microservices-based cinema reservation system built to handle concurrent seat bookings, real-time seat availability updates, payment rollbacks, and QR-based ticketing.',
+    role: 'Solo Full-Stack Developer',
+    stack: ['FastAPI', 'Node.js / Express', 'PostgreSQL', 'Redis', 'Socket.IO', 'Docker'],
+    highlights: [
+      'Separated backend responsibilities into Auth, User, Cinema Catalog, and Reservation services behind an API Gateway.',
+      'Implemented Redis TTL-based seat locking and PostgreSQL transactions to prevent double bookings and preserve ACID guarantees.',
+      'Used Socket.IO to broadcast live seat availability and prevent stale booking states across clients.',
+      'Built QR-code ticket generation and verification alongside Cloudinary asset delivery.',
+    ],
+    link: `${GITHUB}/cinema`,
+    visual: 'cinema' as const,
   },
 ]
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
-  const [heroTab, setHeroTab] = useState<'terminal' | 'portrait'>('terminal')
   const [copied, setCopied] = useState(false)
 
   const closeMenu = () => setMenuOpen(false)
-  const toggleTheme = () => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))
 
-  const handleCopyEmail = () => {
+  const copyEmail = () => {
     navigator.clipboard.writeText(EMAIL)
     setCopied(true)
-    setTimeout(() => setCopied(false), 2200)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
-    <div className={`site-shell theme-${theme}`}>
-      <div className="bg-grid-pattern" aria-hidden="true" />
-
-      <header className="topbar-wrapper">
+    <div className="site-shell">
+      <header className="topbar-wrap">
         <div className="topbar section-wrap">
-          <a className="wordmark" href="#home" onClick={closeMenu}>
-            <span className="wordmark-bracket">&lt;</span>
-            NVP
-            <span className="wordmark-slash">/&gt;</span>
-            <small className="wordmark-tag">backend.eng</small>
+          <a className="brand" href="#home" onClick={closeMenu}>
+            <span className="brand-dot" />
+            <strong>Nguyen Van Phuoc</strong>
+            <span className="brand-role">Backend Developer</span>
           </a>
+
+          <button
+            type="button"
+            className="mobile-menu"
+            aria-label="Toggle navigation"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
 
           <nav className={menuOpen ? 'nav nav-open' : 'nav'}>
             {['About', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'].map(item => (
@@ -231,92 +139,42 @@ function App() {
                 {item}
               </a>
             ))}
-            <div className="nav-actions">
-              <button
-                type="button"
-                className="theme-toggle"
-                onClick={toggleTheme}
-                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-              >
-                {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-                <span>{theme === 'dark' ? 'Light' : 'Dark'}</span>
-              </button>
-              <a className="nav-cta" href={GITHUB} target="_blank" rel="noreferrer">
-                <Github size={14} /> GitHub <ArrowUpRight size={13} />
-              </a>
-            </div>
+            <a className="nav-cta" href={GITHUB} target="_blank" rel="noreferrer">
+              <Github size={14} /> GitHub <ArrowUpRight size={13} />
+            </a>
           </nav>
-
-          <div className="mobile-controls">
-            <button
-              type="button"
-              className="theme-toggle mobile-theme-btn"
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <button
-              type="button"
-              className="mobile-menu"
-              aria-label="Toggle navigation"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              {menuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
         </div>
       </header>
 
       <main>
-        {/* HERO SECTION */}
+        {/* HERO */}
         <section className="hero section-wrap" id="home">
           <div className="hero-copy">
-            <div className="status-banner">
-              <span className="status-dot" />
-              <span className="status-text">SYSTEM ONLINE · OPEN FOR BACKEND ENGINEER ROLES</span>
-            </div>
-
-            <div className="hero-path">
-              <Terminal size={13} />
-              <span>~/hanoi-vn/nguyen-van-phuoc</span>
-              <span className="path-badge">B.S. IT · GPA 3.35</span>
+            <div className="availability-pill">
+              <span className="pulse-dot" />
+              Available for full-time Backend Developer roles
             </div>
 
             <h1>
-              Nguyen Van <span className="accent-gradient">Phuoc.</span>
+              Hi, I’m Phuoc — a backend developer building <span>clear, reliable systems.</span>
             </h1>
 
-            <p className="hero-role">
-              <Server size={16} className="role-icon" />
-              Backend Software Engineer <span>·</span> Distributed Systems &amp; API Architecture
-            </p>
-
             <p className="hero-intro">
-              I architect and build resilient backend services, event-driven pipelines, and high-concurrency relational data layers. Focused on{' '}
-              <strong>FastAPI, NestJS, PostgreSQL (pgvector), Redis, and Apache Kafka</strong> to turn complex domain rules into clean, production-grade APIs.
+              I’m an Information Technology graduate in Hanoi with hands-on experience designing RESTful APIs, relational databases, and event-driven services using{' '}
+              <strong>Python (FastAPI), TypeScript (NestJS), PostgreSQL, Redis, and Docker</strong>.
             </p>
-
-            <div className="hero-QuickStack">
-              {['Python', 'TypeScript', 'FastAPI', 'NestJS', 'PostgreSQL', 'Redis', 'Apache Kafka', 'Docker'].map(tech => (
-                <span key={tech} className="quick-chip">
-                  {tech}
-                </span>
-              ))}
-            </div>
 
             <div className="hero-actions">
-              <a className="button button-primary" href="#projects">
-                <Layers size={16} /> Inspect Systems &amp; Projects <ArrowUpRight size={16} />
+              <a className="btn btn-primary" href="#projects">
+                View selected projects <ArrowUpRight size={16} />
               </a>
-              <button type="button" className="button button-secondary" onClick={handleCopyEmail}>
-                {copied ? <Check size={15} className="copied-icon" /> : <Copy size={15} />}
-                {copied ? 'Email Copied!' : 'Copy Email'}
+              <button type="button" className="btn btn-outline" onClick={copyEmail}>
+                {copied ? <Check size={15} /> : <Copy size={15} />}
+                {copied ? 'Copied email!' : 'Copy email'}
               </button>
             </div>
 
-            <div className="hero-socials">
+            <div className="hero-meta">
               <a href={GITHUB} target="_blank" rel="noreferrer">
                 <Github size={15} /> github.com/Phuocsiucap
               </a>
@@ -329,231 +187,80 @@ function App() {
             </div>
           </div>
 
-          {/* RIGHT SIDE: INTERACTIVE ENGINEERING CONSOLE + PROFILE */}
-          <div className="hero-aside">
-            <div className="console-card">
-              <div className="console-topbar">
-                <div className="window-dots">
-                  <i className="dot-red" />
-                  <i className="dot-amber" />
-                  <i className="dot-green" />
-                </div>
-                <div className="console-tabs" role="tablist">
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected={heroTab === 'terminal'}
-                    className={heroTab === 'terminal' ? 'console-tab active' : 'console-tab'}
-                    onClick={() => setHeroTab('terminal')}
-                  >
-                    <Code2 size={12} /> engineer_spec.json
-                  </button>
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected={heroTab === 'portrait'}
-                    className={heroTab === 'portrait' ? 'console-tab active' : 'console-tab'}
-                    onClick={() => setHeroTab('portrait')}
-                  >
-                    <Sparkles size={12} /> profile_card.view
-                  </button>
-                </div>
-                <span className="console-status">200 OK</span>
-              </div>
-
-              {/* Developer Mini Header inside Card */}
-              <div className="engineer-id-bar">
-                <img src="/profile.png" alt="Nguyen Van Phuoc" className="engineer-avatar" />
-                <div className="engineer-id-meta">
-                  <div className="engineer-id-name">
-                    <strong>Nguyen Van Phuoc</strong>
-                    <span className="verified-badge">
-                      <ShieldCheck size={12} /> Verified Graduate
-                    </span>
-                  </div>
-                  <p>Backend Engineer · 3NestInvest Alumni · HaUI IT</p>
-                </div>
-                <button
-                  type="button"
-                  className="view-switch-pill"
-                  onClick={() => setHeroTab(heroTab === 'terminal' ? 'portrait' : 'terminal')}
-                >
-                  {heroTab === 'terminal' ? 'View Photo' : 'View Spec'}
-                </button>
-              </div>
-
-              {heroTab === 'terminal' ? (
-                <div className="console-body">
-                  <div className="endpoint-bar">
-                    <span className="http-method">GET</span>
-                    <code>/api/v1/engineers/nguyen-van-phuoc/capabilities</code>
-                    <span className="latency-tag">14ms</span>
-                  </div>
-
-                  <pre className="json-View">
-                    <code>
-                      <span className="c-brace">{'{'}</span>
-                      {'\n  '}
-                      <span className="c-key">"role"</span>: <span className="c-str">"Backend Software Engineer"</span>,
-                      {'\n  '}
-                      <span className="c-key">"core_runtime"</span>: [<span className="c-str">"Python/FastAPI"</span>, <span className="c-str">"TS/NestJS"</span>],
-                      {'\n  '}
-                      <span className="c-key">"data_layer"</span>: <span className="c-brace">{'{'}</span>
-                      {'\n    '}
-                      <span className="c-key">"relational"</span>: <span className="c-str">"PostgreSQL (ACID, Prisma, TypeORM)"</span>,
-                      {'\n    '}
-                      <span className="c-key">"vector_search"</span>: <span className="c-str">"pgvector (Semantic Clustering)"</span>,
-                      {'\n    '}
-                      <span className="c-key">"distributed_lock"</span>: <span className="c-str">"Redis TTL &amp; Pub/Sub"</span>
-                      {'\n  '}
-                      <span className="c-brace">{'}'}</span>,
-                      {'\n  '}
-                      <span className="c-key">"messaging"</span>: [<span className="c-str">"Apache Kafka"</span>, <span className="c-str">"Socket.IO"</span>],
-                      {'\n  '}
-                      <span className="c-key">"benchmarks"</span>: <span className="c-brace">{'{'}</span>
-                      {'\n    '}
-                      <span className="c-key">"gpa"</span>: <span className="c-num">3.35</span>, <span className="c-key">"thesis_defense"</span>: <span className="c-str">"9.1/10"</span>,
-                      {'\n    '}
-                      <span className="c-key">"research_award"</span>: <span className="c-str">"2nd Prize DRL-RSMA"</span>
-                      {'\n  '}
-                      <span className="c-brace">{'}'}</span>
-                      {'\n'}
-                      <span className="c-brace">{'}'}</span>
-                    </code>
-                  </pre>
-
-                  <div className="telemetry-grid">
-                    <div className="telemetry-item">
-                      <small>ARCHITECTURE</small>
-                      <strong>Microservices &amp; Event-Driven</strong>
-                    </div>
-                    <div className="telemetry-item">
-                      <small>PRODUCTION EXP</small>
-                      <strong>3NestInvest (Financial &amp; Data)</strong>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="portrait-body">
-                  <div className="portrait-frame">
-                    <img src="/profile.png" alt="Nguyen Van Phuoc" />
-                    <div className="portrait-overlay">
-                      <span className="overlay-tag">HANOI, VIETNAM</span>
-                      <span className="overlay-tag">B.S. INFORMATION TECHNOLOGY</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <div className="console-footer">
-                <span className="note-indicator" />
-                <p>
-                  Focused on building backend systems that are <strong>clear, fault-tolerant, and scalable.</strong>
-                </p>
-              </div>
+          <div className="hero-photo-col">
+            <div className="photo-card">
+              <img src="/profile.png" alt="Nguyen Van Phuoc" />
             </div>
+            <p className="photo-caption">
+              B.S. in Information Technology · Hanoi University of Industry (GPA 3.35/4.0)
+            </p>
           </div>
-
-          <a className="scroll-cue" href="#about">
-            <ArrowDown size={14} /> SCROLL TO ARCHITECTURE OVERVIEW
-          </a>
         </section>
 
-        {/* 01 / ABOUT & ENGINEERING PILLARS */}
+        {/* ABOUT */}
         <section className="section section-wrap" id="about">
-          <SectionHeading index="01" tag="SYSTEM_PROFILE" title="Engineering Philosophy & Core Focus" />
+          <SectionHeader number="01" title="About me" />
 
           <div className="about-grid">
-            <div className="about-left">
+            <div className="about-lead-col">
               <p className="about-lead">
-                An IT graduate with production experience in <em>backend engineering</em>, relational database modeling, and distributed system design.
+                I enjoy turning complex business rules into clean APIs, well-structured database schemas, and maintainable backend services.
               </p>
-              <div className="about-detail">
-                <p>
-                  My engineering journey spans internal financial calculation engines, automated data pipelines at <strong>3NestInvest</strong>, and end-to-end distributed platforms. I specialize in decomposing complex business workflows into well-bounded services with strict data integrity, observability, and predictable latency.
-                </p>
-                <p>
-                  Whether preventing race conditions with Redis distributed locks or orchestrating asynchronous AI video pipelines over Apache Kafka, I prioritize clean architecture and maintainable codebases.
-                </p>
-              </div>
 
-              <div className="stat-row">
-                <div className="stat-box">
-                  <strong>
-                    3.35<span>/4.0</span>
-                  </strong>
-                  <small>UNIVERSITY GPA</small>
+              <div className="stats-grid">
+                <div className="stat-item">
+                  <strong>3.35 / 4.0</strong>
+                  <span>University GPA</span>
                 </div>
-                <div className="stat-box">
-                  <strong>
-                    9.1<span>/10</span>
-                  </strong>
-                  <small>THESIS DEFENSE</small>
+                <div className="stat-item">
+                  <strong>9.1 / 10</strong>
+                  <span>Thesis Defense</span>
                 </div>
-                <div className="stat-box">
-                  <strong>2nd</strong>
-                  <small>RESEARCH PRIZE</small>
-                </div>
-                <div className="stat-box">
-                  <strong>10+</strong>
-                  <small>MONTHS INDUSTRY EXP</small>
+                <div className="stat-item">
+                  <strong>2nd Prize</strong>
+                  <span>Scientific Research</span>
                 </div>
               </div>
             </div>
 
-            <div className="pillars-grid">
-              {engineeringPillars.map(pillar => {
-                const Icon = pillar.icon
-                return (
-                  <div className="pillar-card" key={pillar.code}>
-                    <div className="pillar-top">
-                      <span className="pillar-icon">
-                        <Icon size={18} />
-                      </span>
-                      <span className="pillar-code">{pillar.code}</span>
-                    </div>
-                    <h3>{pillar.title}</h3>
-                    <p>{pillar.desc}</p>
-                  </div>
-                )
-              })}
+            <div className="about-text-col">
+              <p>
+                Through my time at <strong>3NestInvest</strong> and my personal projects, I’ve worked across internal financial calculation tools, automated data pipelines, and microservices-based applications.
+              </p>
+              <p>
+                I care about the practical details of backend engineering: preventing race conditions under concurrent requests, keeping database queries fast and predictable, and documenting APIs clearly so teams can move fast together.
+              </p>
+              <p>
+                I’m currently looking for a full-time <strong>Backend Developer</strong> position where I can contribute to real-world products and keep learning from experienced engineers.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* 02 / EXPERIENCE */}
+        {/* EXPERIENCE */}
         <section className="section section-wrap" id="experience">
-          <SectionHeading index="02" tag="CAREER_LOG" title="Professional Experience" />
+          <SectionHeader number="02" title="Work experience" />
 
-          <div className="timeline">
-            {experiences.map((exp, i) => (
-              <article className="timeline-item" key={exp.role}>
-                <div className="timeline-meta">
-                  <span className="timeline-date">{exp.period}</span>
-                  <span className="timeline-duration">{exp.duration}</span>
-                  <span className="timeline-type">{exp.type}</span>
+          <div className="experience-list">
+            {experiences.map(exp => (
+              <article className="exp-row" key={exp.role}>
+                <div className="exp-left">
+                  <span className="exp-period">{exp.period}</span>
+                  <span className="exp-company">
+                    {exp.company} · {exp.location}
+                  </span>
                 </div>
 
-                <div className="timeline-content">
-                  <div className="timeline-heading">
-                    <div>
-                      <h3>{exp.role}</h3>
-                      <p className="timeline-company">
-                        <strong>{exp.company}</strong> <span>·</span> {exp.location}
-                      </p>
-                    </div>
-                    <span className="timeline-index">EXP_0{i + 1}</span>
-                  </div>
-
-                  <ul className="timeline-bullets">
+                <div className="exp-right">
+                  <h3>{exp.role}</h3>
+                  <ul>
                     {exp.bullets.map(b => (
                       <li key={b}>{b}</li>
                     ))}
                   </ul>
-
-                  <div className="tag-list">
-                    {exp.stack.map(t => (
-                      <span key={t}>{t}</span>
+                  <div className="tags">
+                    {exp.stack.map(item => (
+                      <span key={item}>{item}</span>
                     ))}
                   </div>
                 </div>
@@ -562,104 +269,74 @@ function App() {
           </div>
         </section>
 
-        {/* 03 / SELECTED PROJECTS */}
-        <section className="section projects-section" id="projects">
-          <div className="section-wrap">
-            <SectionHeading index="03" tag="SYSTEM_ARCHITECTURE" title="Selected Backend & Full-Stack Systems" />
-            <p className="section-intro">
-              Deep-dive into production-style architectures I’ve designed and built. Switch between the <strong>Architecture Topology</strong> and <strong>Interactive UI Preview</strong> on each system card.
-            </p>
+        {/* PROJECTS */}
+        <section className="section section-wrap" id="projects">
+          <SectionHeader
+            number="03"
+            title="Selected projects"
+            subtitle="A closer look at two systems I built from scratch, focusing on backend architecture, data flow, and reliability."
+          />
 
-            <div className="project-list">
-              {projects.map(project => {
-                const Icon = project.icon
-                return (
-                  <article className="project-card" key={project.number}>
-                    <ProjectPreview kind={project.visual} number={project.number} code={project.code} />
+          <div className="projects-list">
+            {projects.map(project => (
+              <article className="project-card" key={project.number}>
+                <div className="project-info">
+                  <div className="project-top-meta">
+                    <span className="project-period">{project.period}</span>
+                    <span className="project-badge">{project.badge}</span>
+                  </div>
 
-                    <div className="project-main">
-                      <div className="project-header-meta">
-                        <span className="project-meta">{project.type}</span>
-                        <span className="project-badge">{project.status}</span>
-                      </div>
+                  <div className="project-title-line">
+                    <h3>{project.title}</h3>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="repo-btn"
+                    >
+                      <Github size={14} /> Source code <ArrowUpRight size={14} />
+                    </a>
+                  </div>
 
-                      <div className="project-title-row">
-                        <h3>{project.title}</h3>
-                        <a
-                          className="round-link"
-                          href={project.link}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label={project.linkLabel}
-                        >
-                          <ArrowUpRight size={18} />
-                        </a>
-                      </div>
+                  <p className="project-summary">{project.summary}</p>
 
-                      <p className="project-summary">{project.summary}</p>
+                  <div className="project-highlights">
+                    <h4>What I built</h4>
+                    <ul>
+                      {project.highlights.map(h => (
+                        <li key={h}>{h}</li>
+                      ))}
+                    </ul>
+                  </div>
 
-                      <div className="project-metrics-bar">
-                        {project.metrics.map(m => (
-                          <div key={m.label} className="proj-metric">
-                            <small>{m.label}</small>
-                            <strong>{m.value}</strong>
-                          </div>
-                        ))}
-                      </div>
+                  <div className="tags">
+                    {project.stack.map(tag => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
 
-                      <div className="project-role">
-                        <Icon size={15} /> {project.role}
-                      </div>
-
-                      <div className="project-highlights">
-                        <h4>ARCHITECTURE &amp; ENGINEERING CONTRIBUTIONS</h4>
-                        <ul>
-                          {project.highlights.map(h => (
-                            <li key={h}>{h}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="project-footer-row">
-                        <div className="tag-list">
-                          {project.stack.map(tag => (
-                            <span key={tag}>{tag}</span>
-                          ))}
-                        </div>
-                        <a className="repo-link" href={project.link} target="_blank" rel="noreferrer">
-                          <Github size={14} /> {project.linkLabel} <ExternalLink size={13} />
-                        </a>
-                      </div>
-                    </div>
-                  </article>
-                )
-              })}
-            </div>
+                <ProjectDiagram kind={project.visual} />
+              </article>
+            ))}
           </div>
         </section>
 
-        {/* 04 / TECHNICAL TOOLKIT */}
+        {/* SKILLS */}
         <section className="section section-wrap" id="skills">
-          <SectionHeading index="04" tag="TECH_STACK" title="Technical Toolkit & Infrastructure" />
-          <p className="section-intro">
-            Core languages, frameworks, databases, and distributed systems tooling used across commercial and research projects.
-          </p>
+          <SectionHeader
+            number="04"
+            title="Technical skills"
+            subtitle="Languages, frameworks, databases, and tools I work with regularly."
+          />
 
           <div className="skills-grid">
-            {skills.map((group, i) => (
-              <div className="skill-card" key={group.title}>
-                <div className="skill-card-top">
-                  <span className="skill-index">STACK_0{i + 1}</span>
-                  <Code2 size={15} className="skill-icon" />
-                </div>
+            {skills.map(group => (
+              <div className="skill-group" key={group.title}>
                 <h3>{group.title}</h3>
-                <p className="skill-subtitle">{group.subtitle}</p>
-                <div className="skill-items">
+                <div className="tags">
                   {group.items.map(item => (
-                    <div className="skill-pill" key={item.name}>
-                      <span>{item.name}</span>
-                      <small className={`level-${item.level.toLowerCase()}`}>{item.level}</small>
-                    </div>
+                    <span key={item}>{item}</span>
                   ))}
                 </div>
               </div>
@@ -667,285 +344,194 @@ function App() {
           </div>
         </section>
 
-        {/* 05 / EDUCATION & RECOGNITION */}
-        <section className="section section-wrap education-section" id="education">
-          <SectionHeading index="05" tag="CREDENTIALS" title="Education, Research & Honors" />
+        {/* EDUCATION */}
+        <section className="section section-wrap" id="education">
+          <SectionHeader number="05" title="Education & honors" />
 
-          <div className="education-grid">
-            <div className="education-item">
-              <div className="edu-icon-box">
-                <GraduationCap size={20} />
-              </div>
-              <div>
-                <span className="project-meta">SEP 2022 — NOV 2026</span>
-                <h3>B.S. in Information Technology</h3>
-                <p>Hanoi University of Industry (HaUI)</p>
-                <div className="edu-badges">
-                  <span>GPA: 3.35 / 4.0</span>
-                  <span>Thesis Defense: 9.1 / 10</span>
-                </div>
-              </div>
+          <div className="edu-grid">
+            <div className="edu-card">
+              <GraduationCap size={20} className="edu-icon" />
+              <span className="edu-date">Sep 2022 — Nov 2026</span>
+              <h3>Bachelor of Information Technology</h3>
+              <p className="edu-org">Hanoi University of Industry (HaUI)</p>
+              <p className="edu-note">GPA: 3.35 / 4.0 · Graduation thesis defense: 9.1 / 10</p>
             </div>
 
-            <div className="education-item">
-              <div className="edu-icon-box">
-                <Award size={20} />
-              </div>
-              <div>
-                <span className="project-meta">2025 — 2026 · SCIENTIFIC RESEARCH</span>
-                <h3>Second Prize — Student Research</h3>
-                <p>University-level Scientific Research Competition</p>
-                <small>
-                  Topic: Deep Reinforcement Learning for Energy Efficiency Enhancement in RSMA Networks.
-                </small>
-              </div>
+            <div className="edu-card">
+              <Award size={20} className="edu-icon" />
+              <span className="edu-date">2025 — 2026</span>
+              <h3>Second Prize — Student Scientific Research</h3>
+              <p className="edu-org">University-level Research Competition</p>
+              <p className="edu-note">
+                Deep Reinforcement Learning for Energy Efficiency Enhancement in RSMA Networks
+              </p>
             </div>
 
-            <div className="education-item">
-              <div className="edu-icon-box">
-                <BriefcaseBusiness size={20} />
-              </div>
-              <div>
-                <span className="project-meta">AUG 2025 · INTENSIVE PROGRAM</span>
-                <h3>Samsung Innovation Campus</h3>
-                <p>Selected Program Participant</p>
-                <small>Completed intensive technical training in software engineering and data systems.</small>
-              </div>
+            <div className="edu-card">
+              <BriefcaseBusiness size={20} className="edu-icon" />
+              <span className="edu-date">Aug 2025</span>
+              <h3>Samsung Innovation Campus</h3>
+              <p className="edu-org">Program Participant</p>
+              <p className="edu-note">Practical software development and data engineering coursework.</p>
             </div>
           </div>
 
-          <div className="language-bar">
-            <span className="lang-label">HUMAN LANGUAGES &amp; CERTIFICATIONS</span>
-            <div className="lang-items">
-              <span className="lang-chip">
-                <strong>Vietnamese</strong> · Native
-              </span>
-              <span className="lang-chip">
-                <strong>English</strong> · Technical Reading &amp; Communication
-              </span>
-              <span className="lang-chip">
-                <strong>Korean</strong> · TOPIK Level 2 Certified
-              </span>
-            </div>
+          <div className="languages-row">
+            <strong>Languages:</strong>
+            <span>Vietnamese (Native)</span>
+            <span className="sep">·</span>
+            <span>English (Basic working proficiency)</span>
+            <span className="sep">·</span>
+            <span>Korean (TOPIK Level 2)</span>
           </div>
         </section>
 
-        {/* CONTACT SECTION */}
-        <section className="contact-section" id="contact">
-          <div className="section-wrap contact-inner">
-            <div className="contact-grid">
-              <div>
-                <div className="eyebrow">
-                  <span className="status-dot" /> READY FOR NEW ENGINEERING CHALLENGES
-                </div>
-                <h2>
-                  Let’s engineer <br />
-                  <em>reliable systems together.</em>
-                </h2>
-                <p>
-                  I’m actively seeking full-time <strong>Backend Developer / Software Engineer</strong> roles where I can contribute to API architecture, data pipelines, and scalable products.
-                </p>
-                <div className="contact-actions">
-                  <a className="button button-primary" href={`mailto:${EMAIL}`}>
-                    <Mail size={16} /> Send an Email <ArrowUpRight size={16} />
-                  </a>
-                  <button type="button" className="button button-secondary" onClick={handleCopyEmail}>
-                    {copied ? <Check size={15} /> : <Copy size={15} />}
-                    {copied ? 'Copied to Clipboard!' : EMAIL}
-                  </button>
-                </div>
+        {/* CONTACT */}
+        <section className="section section-wrap" id="contact">
+          <div className="contact-box">
+            <div className="contact-copy">
+              <span className="contact-eyebrow">Get in touch</span>
+              <h2>Looking for a dedicated Backend Developer?</h2>
+              <p>
+                I’m available for full-time roles in Hanoi or remote. Feel free to reach out via email or check out my code on GitHub.
+              </p>
+              <div className="hero-actions">
+                <a className="btn btn-primary" href={`mailto:${EMAIL}`}>
+                  <Mail size={15} /> Send me an email
+                </a>
+                <button type="button" className="btn btn-outline" onClick={copyEmail}>
+                  {copied ? <Check size={15} /> : <Copy size={15} />}
+                  {copied ? 'Copied!' : EMAIL}
+                </button>
               </div>
+            </div>
 
-              <div className="contact-terminal">
-                <div className="preview-top">
-                  <span className="window-dots">
-                    <i className="dot-red" />
-                    <i className="dot-amber" />
-                    <i className="dot-green" />
-                  </span>
-                  <span>QUICK_CONNECT.SH</span>
-                  <span>SSH / HTTPS</span>
+            <div className="contact-links">
+              <a href={`mailto:${EMAIL}`}>
+                <Mail size={16} />
+                <div>
+                  <small>Email</small>
+                  <strong>{EMAIL}</strong>
                 </div>
-                <div className="contact-terminal-body">
-                  <div className="term-line">
-                    <span className="term-prompt">$</span> curl -X POST https://phuoc.dev/contact
-                  </div>
-                  <div className="term-output">
-                    <div>
-                      <span>STATUS:</span> <strong>Available Immediately (Full-time)</strong>
-                    </div>
-                    <div>
-                      <span>LOCATION:</span> <strong>Hanoi, Vietnam (On-site / Hybrid / Remote)</strong>
-                    </div>
-                    <div>
-                      <span>PRIMARY STACK:</span> <strong>Python (FastAPI), TS (NestJS), PostgreSQL, Redis, Kafka</strong>
-                    </div>
-                  </div>
-                  <div className="contact-links-list">
-                    <a href={`mailto:${EMAIL}`}>
-                      <Mail size={15} /> {EMAIL}
-                    </a>
-                    <a href={GITHUB} target="_blank" rel="noreferrer">
-                      <Github size={15} /> github.com/Phuocsiucap
-                    </a>
-                    <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
-                      <Linkedin size={15} /> LinkedIn Profile
-                    </a>
-                  </div>
+              </a>
+              <a href={GITHUB} target="_blank" rel="noreferrer">
+                <Github size={16} />
+                <div>
+                  <small>GitHub</small>
+                  <strong>github.com/Phuocsiucap</strong>
                 </div>
-              </div>
+              </a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+                <Linkedin size={16} />
+                <div>
+                  <small>LinkedIn</small>
+                  <strong>Connect on LinkedIn</strong>
+                </div>
+              </a>
             </div>
           </div>
         </section>
       </main>
 
       <footer className="footer section-wrap">
-        <a className="wordmark" href="#home">
-          <span className="wordmark-bracket">&lt;</span>NVP<span className="wordmark-slash">/&gt;</span>
-        </a>
-        <span>ENGINEERED &amp; DESIGNED BY NGUYEN VAN PHUOC · BACKEND PORTFOLIO</span>
-        <span>© 2026 ALL SYSTEMS OPERATIONAL</span>
+        <span>© 2026 Nguyen Van Phuoc</span>
+        <span>Backend Developer · Hanoi, Vietnam</span>
       </footer>
     </div>
   )
 }
 
-function ProjectPreview({
-  kind,
-  number,
-  code,
-}: {
-  kind: 'ai' | 'cinema'
-  number: string
-  code: string
-}) {
-  const [mode, setMode] = useState<'arch' | 'ui'>('arch')
+function ProjectDiagram({ kind }: { kind: 'ai' | 'cinema' }) {
+  const [tab, setTab] = useState<'flow' | 'preview'>('flow')
 
   if (kind === 'ai') {
     return (
-      <div className="project-visual visual-ai">
-        <div className="visual-header">
-          <span className="visual-code">
-            <GitBranch size={12} /> {code}
-          </span>
-          <div className="visual-switch">
+      <div className="diagram-card">
+        <div className="diagram-bar">
+          <span className="diagram-title">System overview</span>
+          <div className="diagram-tabs">
             <button
               type="button"
-              className={mode === 'arch' ? 'active' : ''}
-              onClick={() => setMode('arch')}
+              className={tab === 'flow' ? 'active' : ''}
+              onClick={() => setTab('flow')}
             >
-              Architecture
+              Backend flow
             </button>
             <button
               type="button"
-              className={mode === 'ui' ? 'active' : ''}
-              onClick={() => setMode('ui')}
+              className={tab === 'preview' ? 'active' : ''}
+              onClick={() => setTab('preview')}
             >
-              Studio UI
+              UI preview
             </button>
           </div>
         </div>
 
-        {mode === 'arch' ? (
-          <div className="arch-diagram">
-            <div className="arch-tier">
-              <div className="arch-node">
-                <small>INGESTION &amp; VECTOR DB</small>
-                <strong>Crawler + pgvector</strong>
-                <span>Cosine Deduplication &amp; Clustering</span>
-              </div>
-              <div className="arch-arrow">→</div>
-              <div className="arch-node highlight-node">
-                <small>API &amp; ORCHESTRATOR</small>
-                <strong>FastAPI Core</strong>
-                <span>REST + Task Dispatch</span>
+        {tab === 'flow' ? (
+          <div className="flow-body">
+            <div className="flow-step">
+              <span className="step-num">1</span>
+              <div>
+                <strong>Data Ingestion &amp; Vector Deduplication</strong>
+                <p>Crawler collects social posts → normalized &amp; clustered via PostgreSQL pgvector.</p>
               </div>
             </div>
-
-            <div className="arch-bus">
-              <Zap size={12} />
-              <span>APACHE KAFKA EVENT STREAM (media.render · social.publish)</span>
-            </div>
-
-            <div className="arch-tier">
-              <div className="arch-node">
-                <small>AI MEDIA WORKER</small>
-                <strong>LLM + TTS + OCR + Remotion</strong>
-                <span>Async Video Rendering Pipeline</span>
-              </div>
-              <div className="arch-arrow">→</div>
-              <div className="arch-node">
-                <small>DISTRIBUTION</small>
-                <strong>OAuth2 Publisher</strong>
-                <span>TikTok · YouTube · TikTok Shop</span>
+            <div className="flow-connector" />
+            <div className="flow-step">
+              <span className="step-num">2</span>
+              <div>
+                <strong>FastAPI Core &amp; Apache Kafka Queue</strong>
+                <p>Decouples API requests from heavy video synthesis &amp; publishing jobs.</p>
               </div>
             </div>
-
-            <div className="arch-footer">
-              <span>STORAGE: PostgreSQL + MongoDB</span>
-              <span>RUNTIME: Docker Compose</span>
+            <div className="flow-connector" />
+            <div className="flow-step">
+              <span className="step-num">3</span>
+              <div>
+                <strong>AI Video Pipeline (LLM + TTS + OCR + Remotion)</strong>
+                <p>Generates script, voiceover, subtitles, and renders MP4 server-side.</p>
+              </div>
+            </div>
+            <div className="flow-connector" />
+            <div className="flow-step">
+              <span className="step-num">4</span>
+              <div>
+                <strong>Scheduled OAuth2 Distribution</strong>
+                <p>Publishes automatically to TikTok, YouTube &amp; TikTok Shop APIs.</p>
+              </div>
             </div>
           </div>
         ) : (
-          <div className="preview-window">
-            <div className="preview-top">
-              <span className="window-dots">
-                <i className="dot-red" />
-                <i className="dot-amber" />
-                <i className="dot-green" />
-              </span>
-              <span>AI CONTENT STUDIO · DASHBOARD</span>
-              <span className="preview-count">{number} / 02</span>
-            </div>
-            <div className="studio-layout">
-              <div className="studio-rail">
-                <b>✳</b>
-                <i />
-                <i />
-                <i />
-                <i />
+          <div className="mini-ui-wrap">
+            <div className="mini-window">
+              <div className="mini-top">
+                <span className="dots"><i /><i /><i /></span>
+                <span>Content Studio</span>
               </div>
-              <div className="studio-content">
-                <div className="preview-heading">
-                  <span>
-                    <small>KAFKA PIPELINE / ACTIVE</small>
-                    <strong>Content Automation Hub</strong>
-                  </span>
-                  <b>+ Render Job</b>
-                </div>
-                <div className="studio-stats">
-                  <span>
-                    <i>Rendered Videos</i>
-                    <b>142</b>
-                    <em>99.2% Success</em>
-                  </span>
-                  <span>
-                    <i>Vector Dedup</i>
-                    <b>8.6k</b>
-                    <em>pgvector</em>
-                  </span>
-                </div>
-                <div className="studio-chart">
-                  <div className="chart-label">
-                    Worker Throughput <small>7-DAY TELEMETRY</small>
+              <div className="mini-studio">
+                <div className="mini-row">
+                  <div>
+                    <small>Workspace</small>
+                    <strong>Scheduled Videos</strong>
                   </div>
-                  <div className="chart-bars">
-                    <i />
-                    <i />
-                    <i />
-                    <i />
-                    <i />
-                    <i />
-                    <i />
+                  <span className="mini-btn">+ New job</span>
+                </div>
+                <div className="mini-metrics">
+                  <div>
+                    <small>Published</small>
+                    <strong>24 posts</strong>
+                  </div>
+                  <div>
+                    <small>Clustered topics</small>
+                    <strong>142 items</strong>
                   </div>
                 </div>
-                <div className="studio-post">
-                  <span className="post-thumb">✦</span>
-                  <span>
-                    <small>OAUTH2 SCHEDULER</small>
-                    <b>3 multi-channel posts queued</b>
-                  </span>
-                  <i className="post-status" />
+                <div className="mini-queue">
+                  <span className="q-dot" />
+                  <div>
+                    <strong>3 videos rendered via Remotion</strong>
+                    <small>Ready for TikTok &amp; YouTube OAuth2 publish</small>
+                  </div>
                 </div>
               </div>
             </div>
@@ -956,116 +542,89 @@ function ProjectPreview({
   }
 
   return (
-    <div className="project-visual visual-cinema">
-      <div className="visual-header">
-        <span className="visual-code">
-          <Network size={12} /> {code}
-        </span>
-        <div className="visual-switch">
+    <div className="diagram-card">
+      <div className="diagram-bar">
+        <span className="diagram-title">System overview</span>
+        <div className="diagram-tabs">
           <button
             type="button"
-            className={mode === 'arch' ? 'active' : ''}
-            onClick={() => setMode('arch')}
+            className={tab === 'flow' ? 'active' : ''}
+            onClick={() => setTab('flow')}
           >
-            Architecture
+            Backend flow
           </button>
           <button
             type="button"
-            className={mode === 'ui' ? 'active' : ''}
-            onClick={() => setMode('ui')}
+            className={tab === 'preview' ? 'active' : ''}
+            onClick={() => setTab('preview')}
           >
-            Booking UI
+            UI preview
           </button>
         </div>
       </div>
 
-      {mode === 'arch' ? (
-        <div className="arch-diagram">
-          <div className="arch-tier">
-            <div className="arch-node">
-              <small>EDGE &amp; REAL-TIME</small>
-              <strong>API Gateway + Socket.IO</strong>
-              <span>JWT Auth &amp; Live Seat Broadcast</span>
-            </div>
-            <div className="arch-arrow">→</div>
-            <div className="arch-node highlight-node">
-              <small>CORE MICROSERVICES</small>
-              <strong>Reservation &amp; Catalog</strong>
-              <span>FastAPI + Node.js / Express</span>
+      {tab === 'flow' ? (
+        <div className="flow-body">
+          <div className="flow-step">
+            <span className="step-num">1</span>
+            <div>
+              <strong>API Gateway &amp; Microservices</strong>
+              <p>Routes requests across Auth, User, Cinema Catalog, and Reservation services.</p>
             </div>
           </div>
-
-          <div className="arch-bus">
-            <Lock size={12} />
-            <span>CONCURRENCY GUARD: REDIS TTL SEAT LOCK (SETNX + EXPIRE)</span>
-          </div>
-
-          <div className="arch-tier">
-            <div className="arch-node">
-              <small>TRANSACTIONAL DB</small>
-              <strong>PostgreSQL ACID</strong>
-              <span>Payment Rollback &amp; Ledger</span>
-            </div>
-            <div className="arch-arrow">→</div>
-            <div className="arch-node">
-              <small>FULFILLMENT</small>
-              <strong>QR Ticket Engine</strong>
-              <span>Cryptographic Verify + Cloudinary</span>
+          <div className="flow-connector" />
+          <div className="flow-step">
+            <span className="step-num">2</span>
+            <div>
+              <strong>Redis TTL Seat Locking</strong>
+              <p>Holds selected seats with atomic TTL locks so concurrent users cannot double-book.</p>
             </div>
           </div>
-
-          <div className="arch-footer">
-            <span>ISOLATION: Zero Double-Booking</span>
-            <span>SYNC: &lt;50ms WebSocket</span>
+          <div className="flow-connector" />
+          <div className="flow-step">
+            <span className="step-num">3</span>
+            <div>
+              <strong>Live Socket.IO Broadcast</strong>
+              <p>Pushes real-time seat status updates to all connected browsers in the same showtime.</p>
+            </div>
+          </div>
+          <div className="flow-connector" />
+          <div className="flow-step">
+            <span className="step-num">4</span>
+            <div>
+              <strong>PostgreSQL ACID &amp; QR Ticketing</strong>
+              <p>Commits payment transaction safely (with rollback on timeout) and issues QR ticket.</p>
+            </div>
           </div>
         </div>
       ) : (
-        <div className="preview-window cinema-window">
-          <div className="preview-top">
-            <span className="window-dots">
-              <i className="dot-red" />
-              <i className="dot-amber" />
-              <i className="dot-green" />
-            </span>
-            <span>LIVE SEAT LOCK · SOCKET.IO</span>
-            <span className="preview-count">{number} / 02</span>
-          </div>
-          <div className="cinema-content">
-            <div className="cinema-copy">
-              <small>REDIS TTL LOCK · 04:59 REMAINING</small>
-              <strong>
-                Real-time Seat
-                <br />
-                Concurrency Matrix
-              </strong>
-              <span>Screen 04 · ACID Transaction Guard</span>
+        <div className="mini-ui-wrap">
+          <div className="mini-window dark-mini">
+            <div className="mini-top">
+              <span className="dots"><i /><i /><i /></span>
+              <span>Screen 04 · Live Seat Map</span>
             </div>
-            <div className="cinema-screen">IMAX LASER SCREEN</div>
-            <div className="seat-grid">
-              {Array.from({ length: 35 }, (_, i) => (
-                <i
-                  className={
-                    i === 10 || i === 17 || i === 18 || i === 23
-                      ? 'seat selected'
-                      : i === 9 || i === 11 || i === 16
-                        ? 'seat taken'
-                        : 'seat'
-                  }
-                  key={i}
-                />
-              ))}
-            </div>
-            <div className="seat-legend">
-              <span>
-                <i /> Free
-              </span>
-              <span>
-                <i className="legend-selected" /> Redis Locked
-              </span>
-              <span>
-                <i className="legend-taken" /> Sold
-              </span>
-              <b>4 seats · $36</b>
+            <div className="mini-cinema">
+              <div className="screen-bar">SCREEN</div>
+              <div className="seat-grid">
+                {Array.from({ length: 28 }, (_, i) => (
+                  <i
+                    key={i}
+                    className={
+                      i === 9 || i === 10 || i === 17
+                        ? 'seat selected'
+                        : i === 3 || i === 4 || i === 11
+                          ? 'seat taken'
+                          : 'seat'
+                    }
+                  />
+                ))}
+              </div>
+              <div className="seat-legend">
+                <span><i className="l-free" /> Available</span>
+                <span><i className="l-sel" /> Held (Redis TTL)</span>
+                <span><i className="l-sold" /> Booked</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1074,25 +633,22 @@ function ProjectPreview({
   )
 }
 
-function SectionHeading({
-  index,
-  tag,
+function SectionHeader({
+  number,
   title,
+  subtitle,
 }: {
-  index: string
-  tag: string
+  number: string
   title: string
+  subtitle?: string
 }) {
   return (
-    <div className="section-heading">
-      <div className="section-heading-top">
-        <span className="section-idx">{index} //</span>
-        <span className="section-tag">{tag}</span>
-      </div>
-      <div className="section-heading-main">
+    <div className="section-header">
+      <div className="section-title-row">
+        <span className="section-num">{number}</span>
         <h2>{title}</h2>
-        <div className="section-rule" />
       </div>
+      {subtitle && <p className="section-subtitle">{subtitle}</p>}
     </div>
   )
 }
